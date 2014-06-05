@@ -14,15 +14,6 @@ Game.States.Boot.prototype = {
 	},
 
 	create: function(){
-		// Init Scale mode
-		/*
-		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
-        this.scale.minWidth = 320;
-        this.scale.minHeight = 480;
-        this.scale.maxWidth = 480;
-        this.scale.maxHeight = 720;
-        */
-
         // Center canvas
         this.scale.pageAlignHorizontally = true;
         this.scale.pageAlignVertically = true;
@@ -34,17 +25,15 @@ Game.States.Boot.prototype = {
         	this.scale.leaveIncorrectOrientation.add(this.leaveIncorrectOrientation, this);
         }
 
+        // Start Preloader
         this.scale.setScreenSize(true);
-
 		this.game.state.start('Preloader');
 	},
 
 	enterIncorrectOrientation: function(){
-		if((window.innerWidth/window.innerHeight) >= 1.2){
-			Game.orientated = false;
-			this.game.paused = true;
-			document.getElementById('orientation').style.display = 'block';
-		}	
+		Game.orientated = false;
+		this.game.paused = true;
+		document.getElementById('orientation').style.display = 'block';
 	},
 
 	leaveIncorrectOrientation: function(){

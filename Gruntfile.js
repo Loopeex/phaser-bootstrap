@@ -7,14 +7,14 @@ module.exports = function(grunt){
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
 
-    dist_dir: 'dist',
+    dist_dir: 'game/',
 
     gamejs: [
-   	  'game/js/states/load.js',
-   	  'game/js/states/menu.js',
-   	  'game/js/states/play.js',
-      'game/js/prefabs/*.js',
-   	  'game/js/game.js',
+   	  'js/states/load.js',
+   	  'js/states/menu.js',
+   	  'js/states/play.js',
+      'js/prefabs/*.js',
+   	  'js/game.js',
     ],
 
     concat: {
@@ -34,17 +34,17 @@ module.exports = function(grunt){
     copy: {
       main: {
       	files: [
-      	  {expand: true, cwd: 'game/assets/', src: ['**'], dest: '<%= dist_dir %>/assets/'},
+      	  {expand: true, cwd: 'assets/', src: ['**'], dest: '<%= dist_dir %>/assets/'},
       	  {src: ['img/**'], dest: '<%= dist_dir %>/'},
-      	  {expand: true, flatten: true, src: ['game/js/lib/phaser.min.js'], dest: '<%= dist_dir %>/js/'},
-      	  {expand: true, src: ['index.html'], dest: 'dist/' }
+      	  {expand: true, flatten: true, src: ['js/lib/phaser.min.js'], dest: '<%= dist_dir %>/js/'},
+      	  {expand: true, src: ['index.html'], dest: 'game'}
       	]
       }
     },
 
     watch: {
       js: {
-        files: ['game/*.js', 'game/**/*.js'],
+        files: ['js/*.js', 'js/**/*.js'],
         tasks: ['concat', 'uglify'],
         options: {
           livereload: livereloadPort
@@ -60,7 +60,7 @@ module.exports = function(grunt){
           middleware: function (connect) {
             return [
               lrSnippet,
-              connect.static(require('path').resolve('dist'))
+              connect.static(require('path').resolve('game'))
             ];
           }
         }
