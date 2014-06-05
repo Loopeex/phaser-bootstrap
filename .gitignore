@@ -27,5 +27,5 @@ node_modules
 # Users Environment Variables
 .lock-wscript
 
-# Dist directory
-dist
+# Game directory
+game
